@@ -103,6 +103,83 @@ public class RubikCube {
                 this.state[4][0], this.state[2][2], this.state[4][2], this.state[2][0],
                 this.state[5][0], this.state[0][3], this.state[5][2], this.state[0][1]);
     }
+    // bfs search 
+    public void bfs() {
+
+        Queue<RubikCube> queue = new LinkedList<RubikCube>(); // for child state  
+        HashSet<RubikCube> set = new HashSet<RubikCube>(); // for processed state 
+
+        queue.add(this); // adding initial state to queue
+        System.out.println("The initial state: ");
+        System.out.println(this.toString());
+        
+        while (queue.size() > 0) { // while running until queue is empty or goal state is found 
+            RubikCube cur = queue.poll();
+            
+            if (cur.isGoal()) { // checking whether or not goal step    
+                System.out.println("Solution list: "); 
+                display(cur.getSolution(cur)) ;  // solution sequence 
+                     
+                System.out.println("Queue: " + queue.size());
+                System.out.println("Set: " + set.size());
+                return;
+            }
+             
+            set.add(cur);   // processed state is adding to HashSet 
+            
+            // Runing all methods to take children 
+            RubikCube child = cur.frontQuadrupleClockWise();
+            if (!queue.contains(child) && !set.contains(child)) {
+                child.parent = cur ;
+                queue.add(child);
+            }
+            child = cur.frontQuadrupleCounterClockWise();
+            if (!queue.contains(child) && !set.contains(child)) {
+                child.parent = cur ;
+                queue.add(child);
+            }
+            child = cur.topQuadrupleClockWise();
+            if (!queue.contains(child) && !set.contains(child)) {
+                child.parent = cur ;
+                queue.add(child);
+            }
+            child = cur.topQuadrupleCounterClockWise();
+            if (!queue.contains(child) && !set.contains(child)) {
+                child.parent = cur ;
+                queue.add(child);
+            }
+            child = cur.rightQuadrupleClockWise();
+            if (!queue.contains(child) && !set.contains(child)) {
+                child.parent = cur ;
+                queue.add(child);
+            }
+            child = cur.rightQuadrupleCounterClockWise();
+            if (!queue.contains(child) && !set.contains(child)) {
+                child.parent = cur ;
+                queue.add(child);
+            }
+        }
+    }
+    public List<RubikCube> getSolution(RubikCube obj) {
+        
+        List<RubikCube> list = new ArrayList<>() ;
+        list.add(obj) ;
+        
+        RubikCube tmp=obj.parent  ;
+        while(tmp != null) {
+            list.add(tmp) ;
+            tmp = tmp.parent ;
+        }        
+        return list ;
+    }
+    public void display(List<RubikCube> list) {
+        
+        int n = list.size() ;
+        for(int i=n-1;i>=0;i--) {
+            System.out.println(list.get(i).toString()) ;
+        }
+    } 
+    
     @Override
     public RubikCube clone() throws CloneNotSupportedException {
         return new RubikCube();
