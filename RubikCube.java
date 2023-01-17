@@ -61,6 +61,24 @@ public class RubikCube {
                 this.state[5][0], this.state[5][1], this.state[3][1], this.state[3][3]);
     }
 
+    // top 4 , clockwise direction
+    public RubikCube topQuadrupleClockWise() {
+        return new RubikCube(this.state[1][0], this.state[1][1], this.state[0][2], this.state[0][3],
+                this.state[2][0], this.state[2][1], this.state[1][2], this.state[1][3],
+                this.state[3][0], this.state[3][1], this.state[2][2], this.state[2][3],
+                this.state[0][0], this.state[0][1], this.state[3][2], this.state[3][3],
+                this.state[4][2], this.state[4][0], this.state[4][3], this.state[4][1],
+                this.state[5][0], this.state[5][1], this.state[5][2], this.state[5][3]);
+    }
+    public RubikCube topQuadrupleCounterClockWise() {
+        return new RubikCube(this.state[3][0], this.state[3][1], this.state[0][2], this.state[0][3],
+                this.state[0][0], this.state[0][1], this.state[1][2], this.state[1][3],
+                this.state[1][0], this.state[1][1], this.state[2][2], this.state[2][3],
+                this.state[2][0], this.state[2][1], this.state[3][2], this.state[3][3],
+                this.state[4][1], this.state[4][3], this.state[4][0], this.state[4][2],
+                this.state[5][0], this.state[5][1], this.state[5][2], this.state[5][3]);
+    }
+
     @Override
     public String toString() {
 
