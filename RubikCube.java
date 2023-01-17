@@ -9,6 +9,7 @@ public class RubikCube {
 
     public CellState[][] state;
     public RubikCube parent;
+    
 
     public RubikCube() {
 
