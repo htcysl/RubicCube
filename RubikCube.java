@@ -36,4 +36,45 @@ public class RubikCube {
         this.parent = null;
     }
 
+    // front quadrant, clockwise direction 
+    public RubikCube frontQuadrupleClockWise() {
+
+ 
+
+        return new RubikCube(this.state[0][2], this.state[0][0], this.state[0][3], this.state[0][1],
+                this.state[4][2], this.state[1][1], this.state[4][3], this.state[1][3],
+                this.state[2][0], this.state[2][1], this.state[2][2], this.state[2][3],
+                this.state[3][0], this.state[5][2], this.state[3][2], this.state[5][3],
+                this.state[4][0], this.state[4][1], this.state[3][3], this.state[3][1],
+                this.state[5][0], this.state[5][1], this.state[1][2], this.state[1][0]);
+    }
+  // front quadrant, counterclockwise direction
+    public RubikCube frontQuadrupleCounterClockWise() {
+
+ 
+
+        return new RubikCube(this.state[0][1], this.state[0][3], this.state[0][0], this.state[0][2],
+                this.state[5][3], this.state[1][1], this.state[5][2], this.state[1][3],
+                this.state[2][0], this.state[2][1], this.state[2][2], this.state[2][3],
+                this.state[3][0], this.state[4][3], this.state[3][2], this.state[4][2],
+                this.state[4][0], this.state[4][1], this.state[1][0], this.state[1][2],
+                this.state[5][0], this.state[5][1], this.state[3][1], this.state[3][3]);
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ") ;
+        for (int y = 0; y < 6; y++) {
+            for (int x = 0; x < 4; x++) {
+                sb.append(state[y][x].toString());
+            }
+            sb.append(" ");
+        }
+         sb.append(" ]") ;
+        sb.append("\n----------------------------------------\n");
+        return sb.toString();
+    }
+
 }
