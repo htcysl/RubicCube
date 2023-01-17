@@ -104,6 +104,42 @@ public class RubikCube {
                 this.state[5][0], this.state[0][3], this.state[5][2], this.state[0][1]);
     }
     @Override
+    public RubikCube clone() throws CloneNotSupportedException {
+        return new RubikCube();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj instanceof RubikCube) {
+            RubikCube state = (RubikCube) obj;
+            for (int y = 0; y < 6; y++) {
+                for (int x = 0; x < 4; x++) {
+                    if (this.state[y][x] != state.state[y][x]) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        long code = 0;
+
+        for (int i = 0; i < 6 * 4; i++) {
+            int x = i % 4;
+            int y = i / 6;
+            code = (code << 2) | (state[y][x].ordinal() + 1);
+        }
+        return new Long(code).hashCode();
+    }
+    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
